@@ -6,7 +6,7 @@ rm -rf ./WordPress
 cp -rf ./sky-base/local-config.php ./
 cp -rf ./sky-base/utility-files/sync_uploads_to_local.sh ./
 cp -rf ./sky-base/utility-files/sync_uploads_to_remote.sh ./
-cp -rf ./sky-base/.gitignore ./
+cp -rf ./sky-base/gitignore.txt ./.gitignore
 cp -rf ./sky-base/wp-config.php ./
 rm -rf ./wp-config-sample.php
 printf "MySQL User: "

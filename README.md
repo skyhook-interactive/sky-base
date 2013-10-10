@@ -1,7 +1,7 @@
 sky-base
 =================
 
-Contributors: corycrowley, bigwilliam, kyletheisen, joshnichols
+Contributors: corycrowley, bigwilliam, kyletheisen, joshnichols, mattbob
 
 Roll a new WordPress installation.
 

@@ -6,7 +6,7 @@ Contributors: corycrowley, bigwilliam, kyletheisen, joshnichols, mattbob
 Roll a new WordPress installation.
 
 1. Download the repo `git clone git@github.com:skyhook-marketing/sky-base.git`
-1. Run /sky-base/init.sh in Terminal `sky-base/init.sh`
+1. Run /sky-base/init.sh in Terminal `sh sky-base/init.sh`
 1. Answer the prompts.
 
 > I decided to combine the most common, repetitive steps of the process into one useful bash script that:

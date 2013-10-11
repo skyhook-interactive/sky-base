@@ -1,5 +1,32 @@
 #!/bin/bash
-git clone git@github.com:WordPress/WordPress.git
+printf "Name of Project/Domain: "
+read PROJECTNAME
+#git clone git@github.com:WordPress/WordPress.git $PROJECTNAME
+
+##############################
+# Get files from wordpress.org
+##############################
+mkdir $PROJECTNAME
+cd $PROJECTNAME
+wget http://wordpress.org/latest.tar.gz
+tar -zxf latest.tar.gz
+mv wordpress/* .
+rm latest.tar.gz
+rm -r wordpress
+
+##############################
+# Update Local wp-config files
+##############################
+
+############
+# todo
+############
+# roots theme
+# base plugins
+
+
+exit
+
 rm -rf .git
 cp -rf ./WordPress/* ./
 rm -rf ./WordPress

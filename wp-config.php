@@ -17,27 +17,23 @@
 // ** MySQL settings - You can get this info from your web host ** //
 if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 
+	/** Include Local Config */
+	include( dirname( __FILE__ ) . '/local-config.php' );
+
 	/** Turn Debugging ON */
 	define( 'WP_DEBUG', true );
 	
-	/** Include Local Config */
-	include( dirname( __FILE__ ) . '/local-config.php' );
+	
 } else {
-	
-	/** Turn Debuggin OFF */
-	define( 'WP_DEBUG', false );
-	
-	/** The name of the database for WordPress */
+
+	/** Database Settings **/
 	define( 'DB_NAME', 'live_database_name_here' );
-	
-	/** MySQL database username */
 	define( 'DB_USER', 'live_username_here' );
-	
-	/** MySQL database password */
 	define( 'DB_PASSWORD', 'live_password_here' );
-	
-	/** MySQL hostname */
 	define( 'DB_HOST', 'localhost' );
+
+	/** Turn Debugging OFF */
+	define( 'WP_DEBUG', false );
 }
 
 /** Database Charset to use in creating database tables. */
@@ -45,6 +41,26 @@ define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
+/******************
+ * Other settings *
+ ******************/
+
+/* Memory Limit */
+//define( 'WP_MEMORY_LIMIT', '64M' );
+
+/* Specify maximum number of Revisions. */
+define( 'WP_POST_REVISIONS', '5' );
+
+/* Media Trash. */
+// define( 'MEDIA_TRASH', true );
+
+/* SSL */
+// define( 'FORCE_SSL_LOGIN', true );
+// define( 'FORCE_SSL_ADMIN', true );
+
+/* Multisite. */
+// define( 'WP_ALLOW_MULTISITE', true );
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -90,23 +106,23 @@ define('WPLANG', '');
  * Change this to true to enable the display of notices during development.
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
+ * @link http://codex.wordpress.org/Debugging_in_WordPress
  */
 if ( WP_DEBUG ) {
-	/* Tells WordPress to log everything to the /wp-content/debug.log file */
-	define( 'WP_DEBUG_LOG', true );
+    
+    /* Tells WordPress to log everything to the /wp-content/debug.log file */
+    define( 'WP_DEBUG_LOG', true );
 
-	/* Doesn't force the PHP 'display_errors' variable to be on */
-	define( 'WP_DEBUG_DISPLAY', false );
+    /* Hides debug errors inside the HTML (using DEBUG_LOG instead) */
+    define( 'WP_DEBUG_DISPLAY', false );
+    @ini_set( 'display_errors', 0 );
 
-	/* Hides errors from being displayed on-screen */
-	@ini_set( 'display_errors', 0 );
+    /* This will force WordPress to use the "dev" versions of core CSS and Javascript files rather than the minified versions that are normally loaded. This is useful when you are testing modifications to any built-in .js or .css files. Default is false. */
+    define('SCRIPT_DEBUG', true);
+
+    /* The SAVEQUERIES definition saves the database queries to an array and that array can be displayed to help analyze those queries. The information saves each query, what function called it, and how long that query took to execute. */
+    define('SAVEQUERIES', true);  
 }
-
-/* Increase Memory Limit */
-define( 'WP_MEMORY_LIMIT', '64M' );
-
-/* Define Revisions Limit */
-define( 'WP_POST_REVISIONS', 3 );
 
 /* That's all, stop editing! Happy blogging. */
 

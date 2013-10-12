@@ -1,30 +1,75 @@
 #!/bin/bash
 printf "Name of Project/Domain: "
 read PROJECTNAME
+
+
+# GIT
 #git clone git@github.com:WordPress/WordPress.git $PROJECTNAME
+#rm -rf ./$PROJECTNAME/.git
 
 ##############################
 # Get files from wordpress.org
 ##############################
-mkdir $PROJECTNAME
-cd $PROJECTNAME
+printf "\n\n*** Getting WordPress *** \n\n"
+mkdir ./$PROJECTNAME
+cd ./$PROJECTNAME
 wget http://wordpress.org/latest.tar.gz
-tar -zxf latest.tar.gz
-mv wordpress/* .
-rm latest.tar.gz
-rm -r wordpress
+tar -zxf ./latest.tar.gz
+mv ./wordpress/* ./
+rm ./latest.tar.gz
+rm -rf ./wordpress
+cd ../
 
 ##############################
-# Update Local wp-config files
+# Create Local WP files
 ##############################
+printf "\nSetting up config files... "
+cp ./base-files/local-config.php ./$PROJECTNAME/
+cp ./base-files/wp-config.php ./$PROJECTNAME/
+
+cd ./$PROJECTNAME
+SECRETKEYS=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
+EXISTINGKEYS='put your unique phrase here'
+printf '%s\n' "g/$EXISTINGKEYS/d" a "$SECRETKEYS" . w | ed -s wp-config.php
+printf "Done"
+cd ../
+
+##############################
+# Setup Local Git Repo
+##############################
+printf "\nInitiate a git repo here? (y or n): "
+read GITSETUP
+if [ "$GITSETUP" = "y" ]; then
+	cp ./base-files/gitignore.txt ./$PROJECTNAME/.gitignore
+	cd ./$PROJECTNAME
+	git init
+	git add --all
+	git commit -m "initial commit"
+	git status
+else
+	printf "Skipping git setup."
+fi
+
+
+##############################
+# Create Local Database
+##############################
+
+
+##############################
+# Cleanup sky-base files
+##############################
+
 
 ############
 # todo
 ############
+# populate local-config.php
+# populate wp-config.php
 # roots theme
 # base plugins
 
-
+printf "\nALL DONE!\n"
 exit
 
 rm -rf .git
@@ -61,9 +106,9 @@ read LIVEMYSQLDBNAME
 if [ "$LIVEMYSQLDBNAME" = "" ]; then
 	set LIVEMYSQLDBNAME = "live_database_name_here"
 fi
-SECRETKEYS=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
-EXISTINGKEYS='put your unique phrase here'
-printf '%s\n' "g/$EXISTINGKEYS/d" a "$SECRETKEYS" . w | ed -s wp-config.php
+
+
+
 DBUSER=$"username_here"
 DBPASS=$"password_here"
 DBNAME=$"database_name_here"

@@ -1,4 +1,7 @@
 #!/bin/bash
+########################################################
+THIS NEEDS TO BE UPDATED TO WORK FOR WINDOWS MACHINES :)
+########################################################
 printf "Name of Project/Domain: "
 read PROJECTNAME
 

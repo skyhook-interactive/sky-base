@@ -10,7 +10,10 @@ read PROJECTNAME
 ##############################
 # Get files from wordpress.org
 ##############################
-printf "\n\n*** Getting WordPress *** \n\n"
+printf "*************************\n"
+printf "*** Getting WordPress ***\n"
+printf "*************************\n\n"
+
 mkdir ./$PROJECTNAME
 cd ./$PROJECTNAME
 wget http://wordpress.org/latest.tar.gz

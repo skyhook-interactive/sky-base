@@ -1,4 +1,7 @@
 #!/bin/bash
+printf "*************************\n"
+printf "******* Sky-base ********\n"
+printf "*************************\n\n"
 printf "Name of Project/Domain: "
 read PROJECTNAME
 
@@ -30,6 +33,7 @@ printf "\nSetting up config files... "
 cp ./base-files/local-config.php ./$PROJECTNAME/
 cp ./base-files/wp-config.php ./$PROJECTNAME/
 
+printf "\nSetting salts in wp-config.php... "
 cd ./$PROJECTNAME
 SECRETKEYS=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
 EXISTINGKEYS='put your unique phrase here'
@@ -60,6 +64,25 @@ fi
 
 
 ##############################
+# Install Roots Theme
+##############################
+#git clone git@github.com:roots/roots.git $PROJECTNAME
+# remove changelog, config log, license
+
+##############################
+# Update Roots app.less with custom settings and bootstrap overrides (i.e. gravity forms styles)
+##############################
+
+##############################
+# Run NPM and Grunt config
+##############################
+# npm install
+
+##############################
+# Install basic plugins
+##############################
+
+##############################
 # Cleanup sky-base files
 ##############################
 
@@ -71,6 +94,7 @@ fi
 # populate wp-config.php
 # roots theme
 # base plugins
+# add a check for a "custom.sh" file so that users can add custom features, such as modifying config.php in roots, or have their own DB credentials pre-loaded
 
 printf "\nALL DONE!\n"
 exit
